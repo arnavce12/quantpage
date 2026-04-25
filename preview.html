@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quant & Finance Basics</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    scroll-behavior: smooth;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeDown 1s ease;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 30px 0;
+    backdrop-filter: blur(10px);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 0.8s ease;
+}
+
+/* Visible animation */
+.card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.08);
+}
+
+/* Chart */
+.chart {
+    margin-top: 20px;
+}
+
+.bar {
+    height: 25px;
+    margin: 10px 0;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    width: 0;
+    border-radius: 5px;
+    transition: width 1.5s ease;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+}
+
+/* Animations */
+@keyframes fadeDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    h1 { font-size: 2em; }
+    nav { flex-wrap: wrap; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1><i class="fas fa-chart-line"></i> Quantitative Finance</h1>
+    <p>Math + Data + Markets</p>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#applications">Applications</a>
+    <a href="#chart">Market Chart</a>
+</nav>
+
+<section id="about">
+    <div class="card">
+        <h2><i class="fas fa-brain"></i> What is Quant Finance?</h2>
+        <p>
+            Quant finance applies mathematical models and algorithms to financial markets
+            for trading, pricing, and risk analysis.
+        </p>
+    </div>
+</section>
+
+<section id="tools">
+    <div class="card">
+        <h2><i class="fas fa-laptop-code"></i> Tools & Technologies</h2>
+        <ul>
+            <li>Python & C++</li>
+            <li>Machine Learning</li>
+            <li>Monte Carlo Simulation</li>
+            <li>Time Series Models</li>
+        </ul>
+    </div>
+</section>
+
+<section id="applications">
+    <div class="card">
+        <h2><i class="fas fa-building-columns"></i> Applications</h2>
+        <p>
+            Used in hedge funds, trading firms, and fintech for pricing derivatives,
+            portfolio optimization, and high-frequency trading.
+        </p>
+
+        <a class="btn" href="https://www.bloomberg.com" target="_blank">
+            <i class="fas fa-newspaper"></i> Finance News
+        </a>
+    </div>
+</section>
+
+<!-- Animated Chart Section -->
+<section id="chart">
+    <div class="card">
+        <h2><i class="fas fa-chart-bar"></i> Market Growth Simulation</h2>
+        <p>Example of sector performance (animated)</p>
+
+        <div class="chart">
+            <div class="bar" data-width="90%">Tech</div>
+            <div class="bar" data-width="75%">Finance</div>
+            <div class="bar" data-width="65%">Energy</div>
+            <div class="bar" data-width="80%">AI/ML</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Quant Finance Project</p>
+</footer>
+
+<script>
+
+/* Scroll Animation */
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    });
+});
+
+cards.forEach(card => observer.observe(card));
+
+/* Chart Animation */
+const bars = document.querySelectorAll('.bar');
+
+const chartObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            bars.forEach(bar => {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+        }
+    });
+});
+
+chartObserver.observe(document.querySelector('#chart'));
+
+</script>
+
+</body>
+</html>
